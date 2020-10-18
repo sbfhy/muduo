@@ -12,7 +12,9 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdio.h>
-
+        
+// 定义这个宏后，可以使用PRId64，即在输出int64_t时，可以兼容32位和64位系统。
+// 如果不用这个，32位系统输出64位整数是long long int, 用%lld ; 在64位系统输出64位整数是long int，用%ld
 #ifndef __STDC_FORMAT_MACROS
 #define __STDC_FORMAT_MACROS
 #endif

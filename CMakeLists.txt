@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.6)
 
 project(muduo C CXX)
 
-enable_testing()
+enable_testing()                                              # 程序可以用 add_test() 或 do_test(Tutorial 4 "4 is 2") 测试。
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Release")
@@ -43,14 +43,14 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   list(APPEND CXX_FLAGS "-Wthread-safety")
   list(REMOVE_ITEM CXX_FLAGS "-rdynamic")
 endif()
-string(REPLACE ";" " " CMAKE_CXX_FLAGS "${CXX_FLAGS}")
+string(REPLACE ";" " " CMAKE_CXX_FLAGS "${CXX_FLAGS}")        # CXX_FLAGS作为输入，用空格替代分号,将结果填充到变量CMAKE_CXX_FLAGS
 
-set(CMAKE_CXX_FLAGS_DEBUG "-O0")
-set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+set(CMAKE_CXX_FLAGS_DEBUG "-O0")                              # 设置Debug专用参数
+set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")                   # 设置Release专用参数
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)         # 设置生成执行文件的目录
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)            # 设置生成库文件的目录
 
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED)                                  # 从外部项目查找并加载设置
 find_package(Protobuf)
 find_package(CURL)
 find_package(ZLIB)
@@ -72,7 +72,7 @@ find_path(THRIFT_INCLUDE_DIR thrift)
 find_library(THRIFT_LIBRARY NAMES thrift)
 
 if(CARES_INCLUDE_DIR AND CARES_LIBRARY)
-  message(STATUS "found cares")
+  message(STATUS "found cares")                               # 输出日志
 endif()
 if(CURL_FOUND)
   message(STATUS "found curl")
@@ -96,14 +96,13 @@ if(THRIFT_COMPILER AND THRIFT_INCLUDE_DIR AND THRIFT_LIBRARY)
   message(STATUS "found thrift")
 endif()
 
-include_directories(${Boost_INCLUDE_DIRS})
-
+include_directories(${Boost_INCLUDE_DIRS})                    # 添加包含目录
 include_directories(${PROJECT_SOURCE_DIR})
 
-string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
+string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)                # 转成大写，输出到变量BUILD_TYPE
 message(STATUS "CXX_FLAGS = " ${CMAKE_CXX_FLAGS} " " ${CMAKE_CXX_FLAGS_${BUILD_TYPE}})
 
-add_subdirectory(muduo/base)
+add_subdirectory(muduo/base)                                  # 添加需要构建的子目录
 add_subdirectory(muduo/net)
 
 if(MUDUO_BUILD_EXAMPLES)

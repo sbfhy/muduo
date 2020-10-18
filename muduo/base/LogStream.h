@@ -45,8 +45,6 @@ class FixedBuffer : noncopyable
       cur_ += len;
     }
   }
-
-  const char* data() const { return data_; }
   int length() const { return static_cast<int>(cur_ - data_); }
 
   // write to data_ directly
@@ -191,11 +189,13 @@ inline LogStream& operator<<(LogStream& s, const Fmt& fmt)
 // Format quantity n in SI units (k, M, G, T, P, E).
 // The returned string is atmost 5 characters long.
 // Requires n >= 0
+// 以国际单位制格式化数量n，即1000进一
 string formatSI(int64_t n);
 
 // Format quantity n in IEC (binary) units (Ki, Mi, Gi, Ti, Pi, Ei).
 // The returned string is atmost 6 characters long.
 // Requires n >= 0
+// 以二进制单位格式化数量n，即1024进一
 string formatIEC(int64_t n);
 
 }  // namespace muduo

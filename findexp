@@ -1,0 +1,32 @@
+#!/bin/sh
+dir=`dirname $0`
+if [ $# -gt 1 ]; then
+  dir=$2
+  echo $dir,"", $#
+fi
+
+#grep --color -n -w -r --exclude-dir=Detour --exclude-dir=zlib --exclude-dir=bak --exclude-dir=build --exclude-dir=dep --exclude-dir=DesignerWork --exclude-dir=DesignerWorkTest --include=*.{cpp,lua,c} --exclude=*.{pb.h,pb.cc} "$1" ${dir}/*
+#echo ""
+#grep --color -n -w -r --exclude-dir=Detour --exclude-dir=zlib --exclude-dir=bak --exclude-dir=build --exclude-dir=dep --exclude-dir=DesignerWork --exclude-dir=DesignerWorkTest --include=*.h --exclude=*.{pb.h,pb.cc} "$1" ${dir}/*
+#echo ""
+#grep --color -n -w -r --exclude-dir=github.com --exclude-dir=Cmd --exclude-dir=Detour --exclude-dir=zlib --exclude-dir=bak --exclude-dir=build --exclude-dir=dep --include=*.go --exclude=*.{pb.go} "$1" ${dir}/*
+
+#grep --color -n  --exclude-dir=base/xlib/Detour --exclude-dir=base/xlib/zlib  "$1" */*/*.{h,cpp,lua} -w | grep -v "protobuf" |grep --color -n "$1" -w
+#grep --color -n --exclude-dir=base/xlib/Detour --exclude-dir=base/xlib/zlib "$1" */*/*/*.{h,cpp,lua} -w
+#grep --color -n  "$1" ${dir}/atelier-proto/* -w -r
+#grep --color -n  "$1" ${dir}/atelier-proto/*/*.proto -w
+#grep --color -n  "$1" ${dir}/atelier-proto/xCmd.proto
+
+#grep --color -n "$1" Config/*.xml -w
+
+grep --color -n -w -r --exclude-dir=tests --include=*.{cc,cpp,lua,c} --exclude=*.{pb.h,pb.cc} "$1" ${dir}/muduo/net
+echo ""
+
+grep --color -n -w -r --exclude-dir=tests --include=*.{h} --exclude=*.{pb.h,pb.cc} "$1" ${dir}/muduo/net
+echo ""
+
+grep --color -n -w -r --exclude-dir=tests --include=*.{cc,cpp,lua,c} --exclude=*.{pb.h,pb.cc} "$1" ${dir}/muduo/base
+echo ""
+
+grep --color -n -w -r --exclude-dir=tests --include=*.{h} --exclude=*.{pb.h,pb.cc} "$1" ${dir}/muduo/base
+echo ""

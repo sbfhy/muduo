@@ -14,7 +14,7 @@ namespace muduo
 
 class TimeZone;
 
-class Logger
+class Logger                                              // 日志实体类，使用时定义为匿名对象，保证立即析构
 {
  public:
   enum LogLevel
@@ -79,7 +79,7 @@ class Logger
 
  private:
 
-class Impl
+class Impl                                                // 内部嵌套类，负责日志实际的实现
 {
  public:
   typedef Logger::LogLevel LogLevel;
@@ -99,7 +99,7 @@ class Impl
 };
 
 extern Logger::LogLevel g_logLevel;
-
+// 不能static inline一起写
 inline Logger::LogLevel Logger::logLevel()
 {
   return g_logLevel;

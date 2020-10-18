@@ -41,6 +41,11 @@ __thread time_t t_lastSecond;
 
 const char* strerror_tl(int savedErrno)
 {
+  /*
+   * #include <string.h>, 返回字符串，用来描述errnum
+   * 函数原型：int strerror_r(int errnum, char *buf, size_t buflen);
+   * errnum 错误号，buf 储存错误信息，buflen 即buf的长度
+   */
   return strerror_r(savedErrno, t_errnobuf, sizeof t_errnobuf);
 }
 

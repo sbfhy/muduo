@@ -166,7 +166,7 @@ class StringPiece {
 }  // namespace muduo
 
 // ------------------------------------------------------------------
-// Functions used to create STL containers that use StringPiece
+//  Functions used to create STL containers that use StringPiece.
 //  Remember that a StringPiece's lifetime had better be less than
 //  that of the underlying string or char*.  If it is not, then you
 //  cannot safely store a StringPiece into an STL container
