@@ -45,6 +45,7 @@ class FixedBuffer : noncopyable
       cur_ += len;
     }
   }
+  const char* data() const { return data_;  }
   int length() const { return static_cast<int>(cur_ - data_); }
 
   // write to data_ directly

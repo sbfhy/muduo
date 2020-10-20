@@ -22,11 +22,11 @@ fi
 grep --color -n -w -r --exclude-dir=tests --include=*.{cc,cpp,lua,c} --exclude=*.{pb.h,pb.cc} "$1" ${dir}/muduo/net
 echo ""
 
-grep --color -n -w -r --exclude-dir=tests --include=*.{h} --exclude=*.{pb.h,pb.cc} "$1" ${dir}/muduo/net
+grep --color -n -w -r --exclude-dir=tests --include=*.h --exclude=*.{pb.h,pb.cc} "$1" ${dir}/muduo/net
 echo ""
 
 grep --color -n -w -r --exclude-dir=tests --include=*.{cc,cpp,lua,c} --exclude=*.{pb.h,pb.cc} "$1" ${dir}/muduo/base
 echo ""
 
-grep --color -n -w -r --exclude-dir=tests --include=*.{h} --exclude=*.{pb.h,pb.cc} "$1" ${dir}/muduo/base
+grep --color -n -w -r --exclude-dir=tests --include=*.h --exclude=*.{pb.h,pb.cc} "$1" ${dir}/muduo/base
 echo ""
