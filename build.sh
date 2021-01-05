@@ -2,14 +2,13 @@
 
 set -x
 
-SOURCE_DIR=`pwd`
-BUILD_DIR=${BUILD_DIR:-../build}
-BUILD_TYPE=${BUILD_TYPE:-release}
-INSTALL_DIR=${INSTALL_DIR:-../${BUILD_TYPE}-install-cpp17}
+SOURCE_DIR=$(cd `dirname $0`;pwd)
+BUILD_DIR=${BUILD_DIR:-$SOURCE_DIR/build}
+BUILD_TYPE=${BUILD_TYPE:-debug}
+INSTALL_DIR=${INSTALL_DIR:-$BUILD_DIR/$BUILD_TYPE/install}
 CXX=${CXX:-g++}
 
-ln -sf $BUILD_DIR/$BUILD_TYPE-cpp11/compile_commands.json
-
+echo $BUILD_DIR/$BUILD_TYPE-cpp17 
 mkdir -p $BUILD_DIR/$BUILD_TYPE-cpp17 \
   && cd $BUILD_DIR/$BUILD_TYPE-cpp17 \
   && cmake \
@@ -17,7 +16,8 @@ mkdir -p $BUILD_DIR/$BUILD_TYPE-cpp17 \
            -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR \
            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
            $SOURCE_DIR \
-  && make $*
+  && make $*  \
+  && make install
 
 # Use the following command to run all the unit tests
 # at the dir $BUILD_DIR/$BUILD_TYPE :

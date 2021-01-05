@@ -1,2 +1,12 @@
 *.swp
 compile_commands.json
+
+build/
+cscope*
+.ycm_extra_conf.py
+.clangd/
+*.log
+
+
+
+
